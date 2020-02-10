@@ -72,3 +72,4 @@ gem 'fog-aws'
 gem 'kaminari'
 gem "gretel"
 gem 'dotenv-rails'
+gem 'rails-i18n'
