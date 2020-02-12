@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="head">
+    <div class="head-box">
+      おすそわけ
+    </div>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="検索する" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索する</button>
+    </form>
+    <% if user_signed_in? %>
+      <div class="head-block">
+        <%=link_to "ログアウト", destroy_user_session_path, method: :delete, class: "log-out"%>
+      </div>
+    <% else %>
+      <div class="head-block">
+        <%=link_to "新規登録", new_user_registration_path, class: "sing-in"%>
+        <%=link_to "ログイン", new_user_session_path, class: "log-in"%>
+      </div>
+    <% end %>
+  </div>
+</nav>

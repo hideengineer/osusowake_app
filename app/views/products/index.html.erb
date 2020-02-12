@@ -1,61 +1,39 @@
 <div class="container-fluid">
   <div class="main">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="head">
-        <div class="head-box">
-          おすそわけ
-        </div>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="検索する" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索する</button>
-        </form>
-        <% if user_signed_in? %>
-          <div class="head-block">
-            <%=link_to "ログアウト", destroy_user_session_path, method: :delete, class: "log-out"%>
-          </div>
-        <% else %>
-          <div class="head-block">
-            <%=link_to "新規登録", new_user_registration_path, class: "sing-in"%>
-            <%=link_to "ログイン", new_user_session_path, class: "log-in"%>
-          </div>
-        <% end %>
-      </div>
-    </nav>
+    <%= render "header" %>
     
     <div class="row">
       <div class="contents">
-        <div class="col-7">
-          <%= image_tag "vegetables.jpg", alt: "イメージ", size: "400x300", class: "rounded-pill"%>
-        </div>
-        <div class="col-12">
-          <table style="height: 100%;">
-            <tbody>
-              <tr>
-                <td class="align-top">
-                  <%= image_tag "brittney.jpg", alt: "イメージ", size: "300x400", class: "rounded-pill"%>
-                  <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      気になる
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <a class="dropdown-item" href="#">おすそわけの品を見てみる</a>
-                      <a class="dropdown-item" href="#">Dropdown link</a>
-                    </div>
-                  </div>
-                </td>
-                <td class="align-middle">
-                  <%= image_tag "vegetables.jpg", alt: "イメージ", size: "700x500", class: "rounded-pill"%>
-                  <h2>おすそわけ</h2>
-                </td>
-                <td class="align-bottom">
-                  <%= image_tag "orange.jpg", alt: "イメージ", size: "400x300", class: "rounded-circle"%>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="col-md-12">
+          <%= image_tag "vegetables.jpg", onmouseover: "this.src='assets/brittney.jpg'", onmouseout: "this.src='assets/vegetables.jpg'", alt: "イメージ", size: "800x600", class: "rounded-pill"%>
+          <div class="contents-box">
+            おすそわけ
+          </div>
+          <div class="btn-group" role="group">
+          <% if user_signed_in? %>
+            <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              気になる
+            </button>
+            <% if current_user.status == 0 %>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <%=link_to "おすそわけの品を見てみる", new_user_session_path, class: "dropdown-item"%>
+            </div>
+            <% else %>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <%=link_to "おすそわけする", new_user_session_path, class: "dropdown-item"%>
+              <%=link_to "おすそわけの品を見てみる", new_user_session_path, class: "dropdown-item"%>
+            </div>
+            <% end %>
+          <% else %>
+            <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              気になる
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <%=link_to "新規登録して利用する", new_user_registration_path, class: "dropdown-item"%>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-  
 </div>
