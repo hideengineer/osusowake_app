@@ -3,15 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  has_many :products
   def remember_me
     true
   end
 
   VALID_PHONE = /\A\d{10,11}\z/
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  VALID_LAST_NAME_KANA = /\A([ァ-ン]|ー)\z/
-  VALID_FIRST_NAME_KANA = /\A([ァ-ン]|ー)\z/
+  VALID_LAST_NAME_KANA = /\A([ァ-ン]|ー)+\z/
+  VALID_FIRST_NAME_KANA = /\A([ァ-ン]|ー)+\z/
 
 
   validates :nickname,                presence: {message: "ニックネームを入力して下さい"}, uniqueness: { case_sensitive: false }, length: {maximum: 20}

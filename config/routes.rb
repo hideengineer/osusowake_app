@@ -5,4 +5,6 @@ Rails.application.routes.draw do
       sessions: "users/sessions"
     }
   root 'products#index'
+  resources :products, only: [:index, :new, :create, :show] do
+  end
 end

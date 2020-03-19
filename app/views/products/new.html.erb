@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="main">
+    <%= render "header" %>
+
+    <div class="row">
+      <div class="contents">
+        <div class="col-md-12">
+          <div class="new-contents">
+            <%= form_with(model: @product, local: true) do |form| %>
+              <%= form.fields_for :images do |image| %>
+                <p>写真を選択</p>
+                <div id="img_label" onClick="$('#new-file').click()" >
+                  <% if @product.images[0].src.url.present? %>
+                    <%= image_tag(@product.images[0].src.url) %>
+                  <% else %>
+                    <i class="fas fa-image"></i>
+                    <i class="fas fa-file-upload add"></i>
+                  <% end %>
+          
+                </div>
+                
+                <%= image.file_field :src, id: "new-file"%>
+              <% end%>
+              <%= form.text_field :name, placeholder: "おすそわけの品の名前",　class: "img-name"%>
+              <%= form.text_field :description, placeholder: "おすそわけの品の状態", class: "img-description"%>
+              <%= form.submit 'おすそわけする', class: "img-submit"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

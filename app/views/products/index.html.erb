@@ -5,7 +5,7 @@
     <div class="row">
       <div class="contents">
         <div class="col-md-12">
-          <%= image_tag "vegetables.jpg", onmouseover: "this.src='assets/brittney.jpg'", onmouseout: "this.src='assets/vegetables.jpg'", alt: "イメージ", size: "800x600", class: "rounded-pill"%>
+          <%= image_tag "vegetables.jpg", onmouseover: "this.src='assets/brittney.jpg'", onmouseout: "this.src='assets/vegetables.jpg'", alt: "イメージ", size: "800x600", class: "rounded-circle"%>
           <div class="contents-box">
             おすそわけ
           </div>
@@ -20,7 +20,7 @@
             </div>
             <% else %>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <%=link_to "おすそわけする", new_user_session_path, class: "dropdown-item"%>
+              <%=link_to "おすそわけする", new_product_path, class: "dropdown-item"%>
               <%=link_to "おすそわけの品を見てみる", new_user_session_path, class: "dropdown-item"%>
             </div>
             <% end %>
@@ -32,6 +32,18 @@
               <%=link_to "新規登録して利用する", new_user_registration_path, class: "dropdown-item"%>
             </div>
           <% end %>
+        </div>
+        <div class="col-12">
+          <div class="contents-block">
+            <% @product.each do |product| %>
+              <div class="product-name">
+                <%= product.name%>
+              </div>
+              <div class="product-image">
+                <%= image_tag product.images[0].src.url, size: "200x200"%>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
